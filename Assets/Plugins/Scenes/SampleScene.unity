@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 294595198}
   - component: {fileID: 294595197}
   - component: {fileID: 294595199}
+  - component: {fileID: 294595200}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -181,10 +182,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a949e8a1cb69c47b2e0844518e3c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sdfRenderTexture1: {fileID: 8400000, guid: e0f49450087a44d4484feaa485c596a0, type: 2}
+  sdfRenderTexture1: {fileID: 8400000, guid: 344f016a9d6cae545b1b9c3853e120a3, type: 2}
   sdfRenderTexture2: {fileID: 8400000, guid: 1499923de228c68419870ca10a87b8f4, type: 2}
-  resultRenderTexture: {fileID: 0}
+  blendSpeed: 0
+  resultRenderTexture: {fileID: 8400000, guid: d13b893ab237b39409354b1337b6eb67, type: 2}
+  blendFactor: 0.076
+  minSDFComputeShader: {fileID: 7200000, guid: b903a8585b5cac04596d692fb9a25e72, type: 3}
   textureSize: 256
+--- !u!114 &294595200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294595196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0250f72d93bc506489b0f50cac5499cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceRenderTexture: {fileID: 8400000, guid: e0f49450087a44d4484feaa485c596a0, type: 2}
+  destinationRenderTexture: {fileID: 8400000, guid: d13b893ab237b39409354b1337b6eb67, type: 2}
 --- !u!1 &314939197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6632532e01378f74eab87bfe3f0db68a, type: 3}
@@ -944,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1242547951
 MonoBehaviour:
   m_ObjectHideFlags: 0
