@@ -1,0 +1,40 @@
+#pragma kernel CSMain
+
+// Textures
+Texture3D<float> _SDFTexture1;
+Texture3D<float> _SDFTexture2;
+RWTexture3D<float> _ResultTexture;
+
+// Blend factor
+float _BlendFactor;
+
+[numthreads(8, 8, 8)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    float sdf1 = _SDFTexture1[id];
+    float sdf2 = _SDFTexture2[id];
+    
+    // Normalize SDF values to range [0, 1]
+    float normalizedSDF1 = (sdf1 + 1.0) / 2.0;
+    float normalizedSDF2 = (sdf2 + 1.0) / 2.0;
+    
+    // Calculate blended SDF values
+    float blendedSDF1 = normalizedSDF1 * _BlendFactor;
+    float blendedSDF2 = normalizedSDF2 * (1.0 - _BlendFactor);
+    
+    // Determine which SDF value to use based on the blending factor
+    float resultSDF;
+    if (blendedSDF1 < blendedSDF2)
+    {
+        // Use sdf1 if it's smaller than sdf2
+        resultSDF = sdf1;
+    }
+    else
+    {
+        // Use sdf2 otherwise
+        resultSDF = sdf2;
+    }
+    
+    // Write the result to the output texture
+    _ResultTexture[id] = resultSDF;
+}
