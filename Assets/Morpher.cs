@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Morpher : MonoBehaviour
@@ -10,7 +11,7 @@ public class Morpher : MonoBehaviour
     [Range(0,1)]
     public float blendFactor = 0;
     public ComputeShader minSDFComputeShader;
-    public int textureSize = 128; // Assuming all render textures are of the same size and cubic
+    public int textureSize = 256; // Assuming all render textures are of the same size and cubic
     private bool blendDirection = true;
     private void Start()
     {
@@ -52,7 +53,7 @@ public class Morpher : MonoBehaviour
         // Dispatch the compute shader
         int threadGroups = Mathf.CeilToInt((float)textureSize / 8.0f);
         minSDFComputeShader.Dispatch(kernelHandle, threadGroups, threadGroups, threadGroups);
-
+        EditorUtility.SetDirty(resultRenderTexture);
         Debug.Log("Minimum SDF Render Texture created.");
     }
 }
